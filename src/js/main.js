@@ -55,7 +55,7 @@ async function loadData() {
 
     categories.forEach(cat => {
       const title = document.createElement("h3");
-      title.className = "text-2xl font-semibold mb-4 mt-6 text-center text-white";
+      title.className = "text-2xl font-semibold mb-4 mt-6 text-white";
       title.textContent = cat.label;
       itemsContainer.appendChild(title);
 
