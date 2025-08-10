@@ -25,9 +25,9 @@ async function loadData() {
     weatherContainer.appendChild(weatherCard);
 
     const categories = [
-      { key: "gear", label: "🛠 Gear" },
       { key: "seeds", label: "🌱 Seeds" },
       { key: "eggs", label: "🥚 Eggs" },
+      { key: "gear", label: "🛠 Gear" },
       { key: "honey", label: "🍯 Honey" },
       { key: "cosmetics", label: "🎨 Cosmetics" }
     ];
