@@ -6,23 +6,24 @@
   <title>Grow A Garden | Tracker</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
-  <div id="loading" class="fixed inset-0 flex flex-col items-center justify-center bg-gray-100 z-50 opacity-100 transition-opacity duration-500"></div>
+<body class="bg-gray-100 font-sans bg-cover bg-center bg-fixed" style="background-image: url('images/wallpaper.jpg');">
+  <div class="bg-black bg-opacity-50 min-h-screen text-white">
+    <div id="loading" class="fixed inset-0 flex flex-col items-center justify-center bg-gray-100 z-50 opacity-100 transition-opacity duration-500"></div>
 
-  <div id="content" class="w-full lg:max-w-7xl mx-auto px-4 py-6 hidden">
-    <h1 class="text-4xl font-bold mb-6 text-center">Grow A Garden Tracker</h1>
-    <div id="weather-container" class="mb-8"></div>
-    <div id="items-container"></div>
+    <div id="content" class="w-full lg:max-w-7xl mx-auto px-4 py-6 hidden">
+      <h1 class="text-4xl font-bold mb-6 text-center">Grow A Garden Tracker</h1>
+      <div id="weather-container" class="mb-8"></div>
+      <div id="items-container"></div>
 
-    <footer class="mt-12 text-center text-gray-600 text-sm">
-      Made by 
-      <a href="https://github.com/herobuxx" target="_blank" class="text-blue-500 hover:underline">
-        HeroBuxx
-      </a> 
-      with ❤️
-    </footer>
+      <footer class="mt-12 text-center text-white text-sm">
+        Made by 
+        <a href="https://github.com/herobuxx" target="_blank" class="text-blue-400 hover:underline">
+          HeroBuxx
+        </a> 
+        with ❤️
+      </footer>
+    </div>
   </div>
-
   <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>
