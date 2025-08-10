@@ -3,21 +3,15 @@ import { formatDate, showLoading, hideLoading } from "./utils.js";
 
 async function loadData() {
   try {
-    // Show loading
     showLoading();
-
     const res = await fetch(`${API_HOST}${ENDPOINTS.allData}`);
     const data = await res.json();
-
-    // Hide loading and show content
     hideLoading();
     document.getElementById("content").classList.remove("hidden");
 
-    // WEATHER
     const weatherContainer = document.getElementById("weather-container");
     const weatherCard = document.createElement("div");
     weatherCard.className = "bg-gradient-to-r from-sky-500 to-cyan-400 text-white p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105 duration-300 ease-in-out w-full";
-
     weatherCard.innerHTML = `
       <div class="flex items-center mb-4">
         <h2 class="text-3xl font-semibold capitalize">${data.weather.type}</h2>
@@ -30,7 +24,6 @@ async function loadData() {
     `;
     weatherContainer.appendChild(weatherCard);
 
-    // CATEGORIES
     const categories = [
       { key: "gear", label: "🛠 Gear" },
       { key: "seeds", label: "🌱 Seeds" },
@@ -62,7 +55,6 @@ async function loadData() {
 
       itemsContainer.appendChild(grid);
     });
-
   } catch (err) {
     console.error("Error loading data:", err);
   }

@@ -21,5 +21,6 @@ export function showLoading() {
 
 export function hideLoading() {
   const loading = document.getElementById("loading");
-  loading.classList.add("hidden");
+  loading.style.opacity = "0";
+  setTimeout(() => loading.classList.add("hidden"), 500);
 }
