@@ -18,9 +18,13 @@ async function loadData() {
       </div>
       <p class="mb-1"><strong>Active:</strong> ${data.weather.active ? "Yes ✅" : "No ❌"}</p>
       <p class="mb-3"><strong>Last Updated:</strong> ${formatDate(data.weather.lastUpdated)}</p>
-      <ul class="list-disc pl-5 space-y-1">
-        ${data.weather.effects.map(e => `<li>${e}</li>`).join("")}
-      </ul>
+      <div class="flex flex-wrap gap-2 mt-3">
+        ${data.weather.effects.map(e => `
+          <span class="bg-white bg-opacity-20 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full relative before:absolute before:-top-1 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-b-white before:border-b-opacity-20">
+            ${e}
+          </span>
+        `).join("")}
+      </div>
     `;
     weatherContainer.appendChild(weatherCard);
 
@@ -41,7 +45,7 @@ async function loadData() {
       itemsContainer.appendChild(title);
 
       const grid = document.createElement("div");
-      grid.className = "grid grid-cols-1 gap-4 mb-8";
+      grid.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8";
 
       data[cat.key].forEach(item => {
         const card = document.createElement("div");
