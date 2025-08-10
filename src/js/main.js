@@ -1,6 +1,14 @@
 import { API_HOST, ENDPOINTS } from "./url.js";
 import { formatDate, showLoading, hideLoading } from "./utils.js";
 
+function getWeatherIcon(type) {
+  const t = type.toLowerCase();
+  if (t.includes("rain")) return "rainy";
+  if (t.includes("thunder")) return "bolt";
+  if (t.includes("normal")) return "sunny";
+  return "cloud";
+}
+
 async function loadData() {
   try {
     showLoading();
@@ -14,13 +22,17 @@ async function loadData() {
     const weatherContainer = document.getElementById("weather-container");
     const weatherCard = document.createElement("div");
     weatherCard.className = "bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-150 ease-in-out w-full";
+    const iconName = getWeatherIcon(data.weather.type);
+
     weatherCard.innerHTML = `
-      <div class="flex items-center mb-4">
+      <div class="flex flex-col items-center text-center mb-4 space-y-2">
+        <span class="material-symbols-outlined text-8xl select-none">
+          ${iconName}
+        </span>
         <h2 class="text-3xl font-semibold capitalize">${data.weather.type}</h2>
+        <p class="text-sm text-white/80">${formatDate(data.weather.lastUpdated)}</p>
       </div>
-      <p class="mb-1"><strong>Active:</strong> ${data.weather.active ? "Yes ✅" : "No ❌"}</p>
-      <p class="mb-3"><strong>Last Updated:</strong> ${formatDate(data.weather.lastUpdated)}</p>
-      <div class="flex flex-wrap gap-2 mt-3">
+      <div class="flex flex-wrap gap-2 mt-3 justify-center">
         ${data.weather.effects.map(e => `
           <span class="bg-white bg-opacity-20 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full relative before:absolute before:-top-1 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-b-white before:border-b-opacity-20">
             ${e}
@@ -28,6 +40,7 @@ async function loadData() {
         `).join("")}
       </div>
     `;
+
     weatherContainer.appendChild(weatherCard);
 
     const categories = [
