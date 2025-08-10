@@ -7,11 +7,13 @@ async function loadData() {
     const res = await fetch(`${API_HOST}${ENDPOINTS.allData}`);
     const data = await res.json();
     hideLoading();
-    document.getElementById("content").classList.remove("hidden");
+
+    const contentEl = document.getElementById("content");
+    contentEl.classList.remove("hidden");
 
     const weatherContainer = document.getElementById("weather-container");
     const weatherCard = document.createElement("div");
-    weatherCard.className = "bg-white bg-opacity-20 backdrop-blur-2xl text-white p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105 duration-300 ease-in-out w-full";
+    weatherCard.className = "bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-150 ease-in-out w-full";
     weatherCard.innerHTML = `
       <div class="flex items-center mb-4">
         <h2 class="text-3xl font-semibold capitalize">${data.weather.type}</h2>
@@ -20,7 +22,7 @@ async function loadData() {
       <p class="mb-3"><strong>Last Updated:</strong> ${formatDate(data.weather.lastUpdated)}</p>
       <div class="flex flex-wrap gap-2 mt-3">
         ${data.weather.effects.map(e => `
-          <span class="bg-white bg-opacity-20 backdrop-blur-2xl text-white text-sm px-3 py-1 rounded-full relative before:absolute before:-top-1 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-b-white before:border-b-opacity-20">
+          <span class="bg-white bg-opacity-20 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full relative before:absolute before:-top-1 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-b-white before:border-b-opacity-20">
             ${e}
           </span>
         `).join("")}
@@ -49,7 +51,7 @@ async function loadData() {
 
       data[cat.key].forEach(item => {
         const card = document.createElement("div");
-        card.className = "bg-white bg-opacity-20 backdrop-blur-2xl text-white p-6 rounded-xl shadow-lg transition-transform transform hover:scale-110 duration-200 ease-in-out w-full";
+        card.className = "bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-150 ease-in-out w-full";
         card.innerHTML = `
           <h4 class="font-semibold text-lg sm:text-base">${item.name}</h4>
           <p class="text-white/80">Quantity: <span class="font-semibold">${item.quantity}</span></p>
