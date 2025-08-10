@@ -5,6 +5,7 @@ function getWeatherIcon(type) {
   const t = type.toLowerCase();
   if (t.includes("rain")) return "rainy";
   if (t.includes("thunder")) return "bolt";
+  if (t.includes("tornado")) return "cyclone";
   if (t.includes("normal")) return "sunny";
   return "cloud";
 }
