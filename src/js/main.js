@@ -21,7 +21,8 @@ async function loadData() {
 
     const weatherContainer = document.getElementById("weather-container");
     const weatherCard = document.createElement("div");
-    weatherCard.className = "bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-150 ease-in-out w-full";
+    weatherCard.className =
+      "bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-150 ease-in-out w-full";
     const iconName = getWeatherIcon(data.weather.type);
 
     weatherCard.innerHTML = `
@@ -33,11 +34,15 @@ async function loadData() {
         <p class="text-sm text-white/80">${formatDate(data.weather.lastUpdated)}</p>
       </div>
       <div class="flex flex-wrap gap-2 mt-3 justify-center">
-        ${data.weather.effects.map(e => `
-          <span class="bg-white bg-opacity-20 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full relative before:absolute before:-top-1 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-b-white before:border-b-opacity-20">
-            ${e}
-          </span>
-        `).join("")}
+        ${data.weather.effects
+          .map(
+            (e) => `
+        <span class="bg-white bg-opacity-10 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full">
+          ${e}
+        </span>
+        `
+          )
+          .join("")}
       </div>
     `;
 
@@ -48,12 +53,12 @@ async function loadData() {
       { key: "eggs", label: "🥚 Eggs" },
       { key: "gear", label: "🛠 Gear" },
       { key: "honey", label: "🍯 Honey" },
-      { key: "cosmetics", label: "🎨 Cosmetics" }
+      { key: "cosmetics", label: "🎨 Cosmetics" },
     ];
 
     const itemsContainer = document.getElementById("items-container");
 
-    categories.forEach(cat => {
+    categories.forEach((cat) => {
       const title = document.createElement("h3");
       title.className = "text-2xl font-semibold mb-4 mt-6 text-white";
       title.textContent = cat.label;
@@ -62,9 +67,10 @@ async function loadData() {
       const grid = document.createElement("div");
       grid.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8";
 
-      data[cat.key].forEach(item => {
+      data[cat.key].forEach((item) => {
         const card = document.createElement("div");
-        card.className = "bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-150 ease-in-out w-full";
+        card.className =
+          "bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-xl shadow-md transition-transform transform hover:scale-105 duration-150 ease-in-out w-full";
         card.innerHTML = `
           <h4 class="font-semibold text-lg sm:text-base">${item.name}</h4>
           <p class="text-white/80">Quantity: <span class="font-semibold">${item.quantity}</span></p>
@@ -80,3 +86,17 @@ async function loadData() {
 }
 
 loadData();
+
+// Popup close logic
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("dev-popup");
+  const closeBtn = document.getElementById("close-popup");
+
+  // Prevent scrolling while popup is visible
+  document.body.classList.add("overflow-hidden");
+
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+    document.body.classList.remove("overflow-hidden");
+  });
+});
