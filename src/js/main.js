@@ -1,10 +1,17 @@
 import { API_HOST, ENDPOINTS } from "./url.js";
-import { formatDate } from "./utils.js";
+import { formatDate, showLoading, hideLoading } from "./utils.js";
 
 async function loadData() {
   try {
+    // Show loading
+    showLoading();
+
     const res = await fetch(`${API_HOST}${ENDPOINTS.allData}`);
     const data = await res.json();
+
+    // Hide loading and show content
+    hideLoading();
+    document.getElementById("content").classList.remove("hidden");
 
     // WEATHER
     const weatherContainer = document.getElementById("weather-container");
