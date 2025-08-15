@@ -7,6 +7,8 @@ function getWeatherIcon(type) {
   if (t.includes("thunder")) return "bolt";
   if (t.includes("tornado")) return "cyclone";
   if (t.includes("snow")) return "mode_cool";
+  if (t.includes("heatwave")) return "mode_heat";
+  if (t.includes("meteor")) return "trail_length";
   if (t.includes("normal")) return "sunny";  
   return "cloud";
 }
